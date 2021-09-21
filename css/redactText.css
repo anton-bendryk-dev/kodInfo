@@ -1,0 +1,9 @@
+.header {
+    background-color: #fff;
+    padding-top: 10px;
+}
+.text2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}

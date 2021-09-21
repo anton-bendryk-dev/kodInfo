@@ -1,0 +1,188 @@
+[
+   {
+      "id": "1",
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-21",
+      "projectSegment": "dep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "1"
+         ],
+         [
+            "text",
+            "2"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            "sa"
+         ],
+         [
+            "text",
+            "sadf"
+         ]
+      ]
+   },
+   {
+      "id": "2",
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-21",
+      "projectSegment": "nodep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "3"
+         ],
+         [
+            "text",
+            "dfsa"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            "sdfa"
+         ],
+         [
+            "text",
+            "fdas"
+         ]
+      ]
+   },
+   {
+      "id": "3",
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-20",
+      "projectSegment": "dep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "zdfds"
+         ],
+         [
+            "text",
+            "dfs"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            "12"
+         ],
+         [
+            "text",
+            "12"
+         ]
+      ]
+   },
+   {
+      "id": "4",
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-20",
+      "projectSegment": "nodep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "sdf"
+         ],
+         [
+            "text",
+            "sdf"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            "12"
+         ],
+         [
+            "text",
+            "12"
+         ]
+      ]
+   },
+   {
+      "id": 5,
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-14",
+      "projectSegment": "dep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "s"
+         ],
+         [
+            "text",
+            "sd"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            ""
+         ],
+         [
+            "text",
+            ""
+         ]
+      ]
+   },
+   {
+      "id": 6,
+      "projectName": "AdmiralShark",
+      "projectType": "Regular",
+      "date": "2021-09-14",
+      "projectSegment": "nodep",
+      "textLanguage": [
+         "ru",
+         "en"
+      ],
+      "ru": [
+         [
+            "subject",
+            "f"
+         ],
+         [
+            "text",
+            "sfe"
+         ]
+      ],
+      "en": [
+         [
+            "subject",
+            ""
+         ],
+         [
+            "text",
+            ""
+         ]
+      ]
+   }
+]

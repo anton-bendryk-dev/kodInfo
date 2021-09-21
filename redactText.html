@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="private">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <title>Страница редактирования текстов</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/redactText.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header header2" id="myTab" role="tablist">
+            <div class="text2" role="tabpanel" aria-labelledby="text-tab">
+                <div class="form-text-filter">
+                    <div class="ftf-box">
+                        <select name="text_project" id="text_pr_list" class="form-control">
+                            <option value='0' checked="checked">Выберите проект</option>
+                        </select>
+                    </div>
+                    <div class="ftf-box">
+                        <select name="text_project" id="mailing_type" class="form-control">
+                            <option value='0' checked="checked">Выберите тип рассылки</option>
+                        </select>
+                    </div>
+                    <div class="ftf-box">
+                        <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
+                    </div>
+                    <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
+                        <a href="#" id="createMailingTextBtn" class="btn gen-templates"
+                            >Выбрать</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section>
+                <div class="container-for-text"></div>
+                <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
+                    <a href="#" class="btn gen-templates" id="saveTextBtn">Сохранить</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+<script type="application/json" src="./javascript/projects.JSON"></script>
+<script type="text/javascript">
+    $.ajax({
+            cache: false,
+            });
+    let textPrList = document.querySelector("#text_pr_list");
+    let mailingType = document.querySelector("#mailing_type");
+    var way = "./texts/";
+    let sendTextArr = [];
+    function readTextFile(file, callback) {
+        
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("./javascript/projects.json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+    }
+    readTextFile("./javascript/projects.JSON", function (text) {
+        var data = JSON.parse(text);
+        // достаём названия проектов
+        for (let i = 0; i < data.length; i++) {
+            const option = document.createElement('option');
+            option.textContent = data[i].name;
+            textPrList.appendChild(option);
+        }
+
+        function deleteOption() {
+            while (mailingType.firstChild) {
+                mailingType.removeChild(mailingType.firstChild);
+            };
+            mailingType.innerHTML = `
+            <option value='0'>Выберите тип рассылки</option>
+            `;
+        }
+
+        // тип разметки для проекта
+        function mailingTypeBtn(way) {
+            let textPrListValue = textPrList.value;
+            for (let i = 0; i < data.length; i++) {
+                if (textPrListValue === data[i].name && mailingType.length <= data[i].type.length) {
+                    let projectId = "projectId=" + data[i].id;
+                        sendTextArr.push(projectId);
+                    for (let j = 0; j < data[i].type.length; j++) {
+                        let option2 = document.createElement('option');
+                        option2.textContent = data[i].type[j][0];
+                        mailingType.appendChild(option2);
+                    }
+                }
+            }
+            way = "./texts/" + textPrList.value.replace(/\s+/g, '') + "/" + mailingType.value.replace(/\s+/g,
+                '') + "/textsData.JSON";
+            textPrList.addEventListener("click", deleteOption);
+            return way;
+        }
+        mailingType.addEventListener("click", mailingTypeBtn);
+
+    });
+</script>
+<script type="text/html" src=`${way}`></script>
+<script type="text/javascript" src="./javascript/redactText.js"></script>
+
+</html>
