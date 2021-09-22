@@ -6,7 +6,7 @@ function getText() {
     // ================================================
     // формируем путь к JSON
     // ================================================
-    let way = "./texts/" + textPrList.value.replace(/\s+/g, "") + "/" + mailingType.value.replace(/\s+/g, "") + "/textsData.JSON";
+    let way = "./texts/" + textPrList.value.replace(/\s+/g, "") + "/" + mailingType.value.replace(/\s+/g, "") + "/textsData.json";
 
     function readTextFile(file, callback) {
         var rawFile = new XMLHttpRequest();

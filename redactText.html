@@ -70,7 +70,7 @@
         }
         rawFile.send(null);
     }
-    readTextFile("./javascript/projects.JSON", function (text) {
+    readTextFile("./javascript/projects.json", function (text) {
         var data = JSON.parse(text);
         // достаём названия проектов
         for (let i = 0; i < data.length; i++) {
@@ -103,7 +103,7 @@
                 }
             }
             way = "./texts/" + textPrList.value.replace(/\s+/g, '') + "/" + mailingType.value.replace(/\s+/g,
-                '') + "/textsData.JSON";
+                '') + "/textsData.json";
             textPrList.addEventListener("click", deleteOption);
             return way;
         }
@@ -111,7 +111,7 @@
 
     });
 </script>
-<script type="text/html" src=`${way}`></script>
+<script type="application/json" src=`${way}`></script>
 <script type="text/javascript" src="./javascript/redactText.js"></script>
 
 </html>
