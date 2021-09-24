@@ -17,6 +17,7 @@ function getText() {
                 callback(rawFile.responseText);
             }
         };
+        rawFile.setRequestHeader("Cache-Control", "no-cache");
         rawFile.send(null);
     }
     readTextFile(`${way}`, function (text) {
@@ -64,7 +65,7 @@ function getText() {
                             let subject = document.querySelector(`.text-container${idProject + dataText[i].textLanguage[j]} .subject`);
                             segment.value = dataText[i].projectSegment;
                             subject.value = dataText[i][`${prop}`][0][1];
-                            
+
                             let textBox2 = document.querySelector(`.text-container${idProject + dataText[i].textLanguage[j]} .text-box2`);
                             for (let k = 1; k < dataText[i][`${prop}`].length; k++) {
                                 if (dataText[i][`${prop}`][k][0] === "text" || dataText[i][`${prop}`][k][0] === "text1" || dataText[i][`${prop}`][k][0] === "text2" || dataText[i][`${prop}`][k][0] === "text3") {
@@ -122,7 +123,7 @@ function getText() {
         // ================================================
         // сохраняем текст
         // ================================================
-        
+
         function saveText() {
             for (let a = 0; a < idArr.length; a++) {
                 for (let i = 0; i < dataText.length; i++) {
@@ -163,9 +164,9 @@ function getText() {
                         var request = new XMLHttpRequest();
 
                         function reqReadyStateChange() {
-                            if (request.readyState == 4 && request.status == 200) {
-                                document.getElementById("output").innerHTML = request.responseText;
-                            }
+                            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                                console.log(request.responseText);
+                            };
                         }
                         // строка с параметрами для отправки
                         request.open("POST", "../save_text.php?" + sendText);
@@ -173,10 +174,14 @@ function getText() {
                         request.onreadystatechange = reqReadyStateChange;
                         request.send(sendText);
                         localStorage.clear();
+                        alert("Текст сохранился");
                         console.log(sendText);
                     }
                 }
             }
+            window.setTimeout(function () {
+                location.reload();
+            }, 1000);
         }
         document.querySelector("#saveTextBtn").addEventListener("click", saveText);
     });

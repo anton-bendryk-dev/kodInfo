@@ -32,19 +32,20 @@
                         <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
                     </div>
                     <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
-                        <a href="#" id="createMailingTextBtn" class="btn gen-templates"
-                            >Выбрать</a>
+                        <a href="#" id="createMailingTextBtn" class="btn gen-templates">Выбрать</a>
                     </div>
                 </div>
             </div>
         </header>
         <main>
             <section>
-                <div class="container-for-text"></div>
+                <div class="container-for-text">
+                </div>
                 <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
-                    <a href="#" class="btn gen-templates" id="saveTextBtn">Сохранить</a>
+                    <a href="/index.html" class="btn gen-templates">На главную </a>
                 </div>
             </section>
+            <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
         </main>
     </div>
 
@@ -52,14 +53,22 @@
 <script type="application/json" src="./javascript/projects.JSON"></script>
 <script type="text/javascript">
     $.ajax({
-            cache: false,
-            });
+        cache: false,
+    });
     let textPrList = document.querySelector("#text_pr_list");
     let mailingType = document.querySelector("#mailing_type");
+    let redactBtn = document.querySelector(".redact-btn");
+
+    window.onscroll = function (e) {
+        redactBtn.style.position = "sticky";
+        redactBtn.style.bottom = "20px";
+        redactBtn.style.left = "80%";
+    }
     var way = "./texts/";
     let sendTextArr = [];
+
     function readTextFile(file, callback) {
-        
+
         var rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType("./javascript/projects.json");
         rawFile.open("GET", file, true);
@@ -68,6 +77,7 @@
                 callback(rawFile.responseText);
             }
         }
+        rawFile.setRequestHeader("Cache-Control", "no-cache");
         rawFile.send(null);
     }
     readTextFile("./javascript/projects.json", function (text) {
@@ -94,7 +104,7 @@
             for (let i = 0; i < data.length; i++) {
                 if (textPrListValue === data[i].name && mailingType.length <= data[i].type.length) {
                     let projectId = "projectId=" + data[i].id;
-                        sendTextArr.push(projectId);
+                    sendTextArr.push(projectId);
                     for (let j = 0; j < data[i].type.length; j++) {
                         let option2 = document.createElement('option');
                         option2.textContent = data[i].type[j][0];

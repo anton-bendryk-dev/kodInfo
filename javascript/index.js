@@ -7,17 +7,18 @@ let containerForText = document.querySelector(".container-for-text");
 // считываем файл json
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("https://anton-bendryk-dev.github.io/kodInfo/javascript/projects.json");
+    rawFile.overrideMimeType("./javascript/projects.json");
     rawFile.open("GET", file, true);
     rawFile.onreadystatechange = function () {
         if (rawFile.readyState === 4 && rawFile.status == "200") {
             callback(rawFile.responseText);
         }
     }
+    rawFile.setRequestHeader("Cache-Control", "no-cache");
     rawFile.send(null);
 }
 
-readTextFile("https://anton-bendryk-dev.github.io/kodInfo/javascript/projects.json", function (text) {
+readTextFile("./javascript/projects.json", function (text) {
     var data = JSON.parse(text);
     // достаём названия проектов
     for (let i = 0; i < data.length; i++) {

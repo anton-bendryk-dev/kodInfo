@@ -22,10 +22,16 @@
         "name": "Mister X",
         "language": ["ru","en"],
         "type": [
-            ["Regular", ["text", "button_name"]],
+            ["Regular", ["text"]],
             ["RWP", ["header1", "text1", "button_name1","header2", "text2", "button_name2"]],
             ["FTD", ["text", "button_name"]],
             ["CTA", ["text", "button_name"]]
+        ],
+        "segments": [
+            ["Regular", ["dep", "nodep"]],
+            ["RWP", ["dep", "nodep"]],
+            ["FTD", ["dep", "nodep"]],
+            ["CTA", ["dep", "nodep"]]
         ],
         "date": ""
     }
