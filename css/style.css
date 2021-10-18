@@ -569,6 +569,15 @@ ul.index_teplates li label .t_id {
     align-items: center;
     justify-content: center;
 }
+#myTabContent {
+    padding-left: 10px;
+    }
+.label-container{
+    display: flex;
+    width: 50%;
+    padding: 15px;
+    position: relative;
+}
 .calendar-box{
     width: 75%;
     display: flex;
@@ -646,6 +655,7 @@ ul.index_teplates li label .t_id {
 }
 .main-content >div{
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 .form-text-filter{
     display: flex;
@@ -675,10 +685,10 @@ ul.index_teplates li label .t_id {
 .mt-3 a{
     width: 100%;
 }
-.download-form input{
+.form-control{
     color: #34b1da;
     padding: 10px;
-    width: 66%;
+    width: 65%;
     border: 2px solid #26a3cc !important;
 }
 .set_t_ids:hover {
@@ -782,6 +792,7 @@ ul.index_teplates li label .t_id {
 
 .add-emoji-container label,
 .add-banner-container label,
+.label-container label,
 .buttext_for_all-container label {
     position: relative;
     /* to contain absolute elements */
@@ -789,9 +800,12 @@ ul.index_teplates li label .t_id {
     /* free space for custom checkbox */
     cursor: pointer;
 }
-
+.label-container span {
+    border: 1px solid #34b1da;
+}
 .add-emoji-container span,
 .add-banner-container span,
+.label-container span,
 .buttext_for_all-container span {
     position: absolute;
     top: 13px;
@@ -803,6 +817,7 @@ ul.index_teplates li label .t_id {
 
 .add-emoji-container span:after,
 .add-banner-container span:after,
+.label-container span:after,
 .buttext_for_all-container span:after {
     content: "";
     position: absolute;
@@ -811,25 +826,28 @@ ul.index_teplates li label .t_id {
     top: 2px;
     width: 13px;
     height: 13px;
-    border: solid white;
+    border:  solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
 
 .add-emoji-container input:checked~span,
 .add-banner-container input:checked~span,
+.label-container input:checked~span,
 .buttext_for_all-container input:checked~span {
     background-color: #2eaadc;
 }
 
 .add-emoji-container label:hover span,
 .add-banner-container label:hover span,
+.label-container input:hover span,
 .buttext_for_all-container label:hover span {
     background-color: #ccc;
 }
 
 .add-emoji-container input:checked~span:after,
 .add-banner-container input:checked~span:after,
+.label-container input:checked~span:after,
 .buttext_for_all-container input:checked~span:after {
     display: block;
 }
@@ -1065,6 +1083,20 @@ ul.index_teplates li label .t_id {
     position: absolute;
     bottom: 20px;
     right: 20px;
+}
+.save-text-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 125, 215, 0.28);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.save-text-container p{
+    font-size: 50px;
 }
 @media screen and (max-width: 1399px) {
     .main {

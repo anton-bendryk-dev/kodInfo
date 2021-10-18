@@ -1,7 +1,7 @@
 let textPrList = document.querySelector("#text_pr_list");
 let mailingType = document.querySelector("#mailing_type");
 let createMailingTextBtn = document.querySelector("#createMailingTextBtn");
-let calendar = document.querySelector(".calendar");
+let calendar = document.querySelector(".ftf-box .calendar");
 let numberOfSegments = document.querySelector("#numberOfSegments");
 let containerForText = document.querySelector(".container-for-text");
 // считываем файл json
@@ -59,6 +59,7 @@ readTextFile("./javascript/projects.json", function (text) {
         while (containerForText.firstChild) {
             containerForText.removeChild(containerForText.firstChild);
         };
+        segmentsArr = [];
         for (let i = 0; i < data.length; i++) {
             let mailingTypeText = mailingType.value;
             let textPrListValue = textPrList.value;
@@ -66,16 +67,17 @@ readTextFile("./javascript/projects.json", function (text) {
                 for (let t = 0; t < data[i].segments.length; t++) {
                     if (mailingTypeText === data[i].segments[t][0]) {
                         numberOfSegments.value = data[i].segments[t][1].length;
-                        for(let m = 0; m < data[i].segments[t][1].length; m++) {
+                        for (let m = 0; m < data[i].segments[t][1].length; m++) {
                             segmentsArr.push(data[i].segments[t][1][m])
                         }
                     }
                 }
             }
-            
+
         }
     }
     calendar.addEventListener("click", updateMarkup);
+
     function createMailingText() {
         let textPrListValue = textPrList.value;
         let mailingTypeText = mailingType.value;
@@ -100,8 +102,8 @@ readTextFile("./javascript/projects.json", function (text) {
             for (let i = 0; i < data.length; i++) {
                 if (textPrListValue === data[i].name) {
                     for (let t = 0; t < data[i].type.length; t++) {
-                        if (mailingTypeText.toString() === data[i].type[t][0]) {                                
-                                textHeaderBlock[a].innerHTML = `
+                        if (mailingTypeText.toString() === data[i].type[t][0]) {
+                            textHeaderBlock[a].innerHTML = `
                                     <div>
                                         <p>Language: <span class="Language">${data[i].language[0]}</span></p>
                                     <div class="text-box">
@@ -120,7 +122,7 @@ readTextFile("./javascript/projects.json", function (text) {
                                     </div>
                                 </div>
                             `;
-                            
+
                             for (let s = 0; s < data[i].type[t][1].length; s++) {
                                 if (data[i].type[t][1][s] === "text" || data[i].type[t][1][s] === "text1" || data[i].type[t][1][s] === "text2" || data[i].type[t][1][s] === "text3") {
                                     let div = document.createElement('div');
@@ -164,7 +166,7 @@ readTextFile("./javascript/projects.json", function (text) {
                             }
                         }
                     }
-                    
+
                 }
             }
         }
@@ -211,8 +213,8 @@ readTextFile("./javascript/projects.json", function (text) {
                 if (textPrListValue === data[i].name) {
                     sendText = "projectId=" + data[i].id;
                     let textLanguage = "textLanguage=" + data[i].language[0];
-                    for(let l = 0; l < data[i].language.length; l++) {
-                        if(data[i].language[l] !== "ru") {
+                    for (let l = 0; l < data[i].language.length; l++) {
+                        if (data[i].language[l] !== "ru") {
                             projectSubject = "subject_" + data[i].language[l] + "=";
                             sendTextArr.push(projectSubject);
                         }
@@ -229,8 +231,8 @@ readTextFile("./javascript/projects.json", function (text) {
                                         let text2 = p.innerHTML.replace("\n", "<br/>");
                                         let projectText = "" + data[i].type[t][1][s] + "_ru" + "=" + text2.replace(/\s+/g, '+');
                                         sendTextArr.push(projectText);
-                                        for(let l = 0; l < data[i].language.length; l++) {
-                                            if(data[i].language[l] !== "ru") {
+                                        for (let l = 0; l < data[i].language.length; l++) {
+                                            if (data[i].language[l] !== "ru") {
                                                 let projectText = "" + data[i].type[t][1][s] + "_" + data[i].language[l] + "=";
                                                 sendTextArr.push(projectText);
                                             }
@@ -243,22 +245,31 @@ readTextFile("./javascript/projects.json", function (text) {
                 }
             }
             // объект для отправки
-            for (let t = 0; t < sendTextArr.length; t++) {
-                sendText += "&" + sendTextArr[t];
-            }
-            var request = new XMLHttpRequest();
+            function s() {
+                for (let t = 0; t < sendTextArr.length; t++) {
+                    sendText += "&" + sendTextArr[t];
+                }
+                document.querySelector(".save-text-container").style.display = 'flex';
+                var request = new XMLHttpRequest();
 
-            function reqReadyStateChange() {
-                if (request.readyState == 4 && request.status == 200)
-                    document.getElementById("output").innerHTML = request.responseText;
+                function reqReadyStateChange() {
+                    if (request.readyState == 4 && request.status == 200)
+                        document.getElementById("output").innerHTML = request.responseText;
+                }
+                // строка с параметрами для отправки
+                request.open("POST", "../save_text.php?", false);
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.setRequestHeader('Content-Length', `${sendText.length}`);
+                request.send(sendText);
+                request.onreadystatechange = reqReadyStateChange;
+                console.log(sendText);
             }
-            // строка с параметрами для отправки
-            request.open("POST", "save_text.php?" + sendText);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            request.onreadystatechange = reqReadyStateChange;
-            request.send(sendText);
-            console.log(sendText);
+            s();
         }
+        window.setTimeout(function () {
+            localStorage.clear();
+            location.reload();
+        }, 1500);
     };
     document.querySelector("#saveTextBtn").addEventListener("click", saveText);
 });

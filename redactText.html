@@ -8,9 +8,11 @@
     <meta http-equiv="Expires" content="-1">
     <title>Страница редактирования текстов</title>
     <link rel="stylesheet" href="css/reset.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/redactText.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
 </head>
 
 <body>
@@ -32,40 +34,54 @@
                         <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
                     </div>
                     <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
+                        
                         <a href="#" id="createMailingTextBtn" class="btn gen-templates">Выбрать</a>
+                        <a href="#" id="addText" class="btn" style="margin-top:10px;">добавить текст</a>
                     </div>
                 </div>
             </div>
         </header>
         <main>
             <section>
-                <div class="container-for-text">
-                </div>
+                <div class="container-for-text"></div>
                 <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
                     <a href="/index.html" class="btn gen-templates">На главную </a>
                 </div>
             </section>
             <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
         </main>
+        <div class="save-text-container">
+            <p>Текст сохраняется 👍</p>
+        </div>
     </div>
 
 </body>
 <script type="application/json" src="./javascript/projects.JSON"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
     $.ajax({
         cache: false,
     });
+    function sliderFunction() {
+        $('.one-time').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+    });
+    }
     let textPrList = document.querySelector("#text_pr_list");
     let mailingType = document.querySelector("#mailing_type");
     let redactBtn = document.querySelector(".redact-btn");
-
+    let containerForText = document.querySelector(".container-for-text");
     window.onscroll = function (e) {
         redactBtn.style.position = "sticky";
         redactBtn.style.bottom = "20px";
         redactBtn.style.left = "80%";
     }
     var way = "./texts/";
-    let sendTextArr = [];
+    const sendTextIdtArr = [];
 
     function readTextFile(file, callback) {
 
@@ -104,7 +120,7 @@
             for (let i = 0; i < data.length; i++) {
                 if (textPrListValue === data[i].name && mailingType.length <= data[i].type.length) {
                     let projectId = "projectId=" + data[i].id;
-                    sendTextArr.push(projectId);
+                    sendTextIdtArr.push(projectId);
                     for (let j = 0; j < data[i].type.length; j++) {
                         let option2 = document.createElement('option');
                         option2.textContent = data[i].type[j][0];
@@ -115,13 +131,34 @@
             way = "./texts/" + textPrList.value.replace(/\s+/g, '') + "/" + mailingType.value.replace(/\s+/g,
                 '') + "/textsData.json";
             textPrList.addEventListener("click", deleteOption);
+            function updateMarkup() {
+            
+            while (containerForText.firstChild) {
+                containerForText.removeChild(containerForText.firstChild);
+            }
+            };
+            updateMarkup();
             return way;
         }
         mailingType.addEventListener("click", mailingTypeBtn);
 
     });
+    function addText() {
+        let subject = document.querySelectorAll(".subject");
+        let text = document.getElementsByName("text");
+        let btnInput = document.querySelectorAll(".text-box2 input");
+        for (let i = 0; i < subject.length; i++) {
+            subject[i].value = "Приятного уикенда и самых позитивных эмоций!"  
+        }
+        for (let i = 0; i < text.length; i++) {
+            text[i].value = "{username}, мы хотим, чтобы Вы чаще улыбались. Поэтому приготовили для Вас приятный презент — пакет индивидуальных бонусов."  
+        }
+        for (let i = 0; i < btnInput.length; i++) {
+            btnInput[i].value = "Play"  
+        }
+    }
+    document.querySelector("#addText").addEventListener("click", addText);
 </script>
 <script type="application/json" src=`${way}`></script>
 <script type="text/javascript" src="./javascript/redactText.js"></script>
-
 </html>

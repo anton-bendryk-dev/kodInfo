@@ -1,3 +1,8 @@
+<?php
+	require_once('config.php');
+	require_once('const.php');
+	require_once('functions.php');
+?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
@@ -41,7 +46,7 @@
                     <form name="temp_params" enctype="multipart/form-data" action="make_templ.php" method="post">
 
                         <div class="form-group col-md-6">
-                            <select name="project" id="pr_list" class="form-control" required >
+                            <select name="project" id="pr_list" class="form-control">
                                 <option value='0' checked="checked">Выберите проект</option>
                                 <?php foreach ($projects as $key => $pr) { ?>
                                 <option value="<?php echo $key; ?>"><?php echo $pr[0]; ?></option>
@@ -52,7 +57,7 @@
                             id='templates_versions'></div>
                         <div class="download-form">
                             <div class="label-container"> 
-                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" value="download_text" checked>
+                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" value="download_text" checked/>
                                 <span></span>
                                 <label for="download_text">Загрузить текст</label>
                             </div>
@@ -65,10 +70,11 @@
                                 <span></span>
                                 <label for="find_text">Искать текст</label>
                             </div>
-                            <input class="calendar form-control" type="date" name="calendar">
+                            <input class="calendar form-control" type="date" name="calendar"/>
                         </div>
                         <div>
-                            <input type='submit' name='submit' class="btn gen-templates" value="Дальше" onclick='sub();'/>
+                            <input type='submit' name='submit' style="display:none;" />
+                            <a href="#" class="btn gen-templates" onclick='sub();'>Дальше</a>
                         </div>
                         <div class="mt-3 navigation">
                             <a href="templates_list.php" class="btn btn-primary">Список шаблонов</a>
@@ -224,6 +230,7 @@
     document.querySelector("#profile-tab").addEventListener("click", tabProfile);
     document.querySelector("#text-tab").addEventListener("click", tabText);
     document.querySelector("#others-tab").addEventListener("click", tabOthers);
+
     $('#pr_list').change(function () {
         if ($('#pr_list option:selected').val() != '0') {
             var pr_id = $('#pr_list option:selected').val();
@@ -294,7 +301,7 @@
             alert('Выберите вариант верстки!');
         } else {
             //alert('Дальше');
-            $('form[name=temp_params] input[name=submit]').submit();
+            $('form[name=temp_params] input[name=submit]').click();
         }
     }
 

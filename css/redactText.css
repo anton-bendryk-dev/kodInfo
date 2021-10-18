@@ -2,20 +2,47 @@
     background-color: #fff;
     padding-top: 10px;
 }
-.text2{
+
+.text2 {
     width: 100%;
     display: flex;
     align-items: center;
 }
-.swiper-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.inline-swiper-slide {
-    padding: 20px;
-    text-align: center;
+
+.slick-slider {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    border-right: 1px solid #26a3cc;
+
+}
+
+.slick-slider ul {
+    display: flex;
     justify-content: center;
+}
+
+.slick-dots button {
+    width: 50px;
+}
+
+.container-for-text {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+}
+
+.slick-list {
+    order: 1;
+}
+
+.slick-prev {
+    display: none !important;
+}
+
+.slick-next {
+    display: none !important;
+}
+
+.slick-dots {
+    order: 4;
 }

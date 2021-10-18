@@ -1,5 +1,5 @@
 <?php
-
+print_r($_POST);
 $config = file_get_contents('./javascript/projects.json');
 $config = json_decode($config, true);
 $project_langs = array();
@@ -7,7 +7,7 @@ $project_langs = array();
 foreach($config as $arr)
 {
 	//print_r($arr['language']);
-	if($arr['id'] == $_REQUEST['projectId'])
+	if($arr['id'] == $_POST['projectId'])
 	{
 		$project_langs = $arr['language'];
 		break;
@@ -16,7 +16,7 @@ foreach($config as $arr)
 }
 
 $slash = strpos(PHP_OS, 'Linux') !== false ? '//' : '\\';
-$dir_to_save = 'texts'.$slash.$_REQUEST['projectName'].$slash.$_REQUEST['projectType'].$slash.'textsData.json';
+$dir_to_save = 'texts'.$slash.$_POST['projectName'].$slash.$_POST['projectType'].$slash.'textsData.json';
 
 $data = file_get_contents($dir_to_save);
 $data = json_decode($data, true);
@@ -24,7 +24,7 @@ $data = json_decode($data, true);
 
 
 
-if(!$_REQUEST['id'])
+if(!$_POST['id'])
 {
 	$max_id = 0;
 	
@@ -41,25 +41,25 @@ if(!$_REQUEST['id'])
 	$final_arr = array('id'=>$max_id+1);
 }
 else
-	$final_arr = array('id'=>$_REQUEST['id']);
+	$final_arr = array('id'=>$_POST['id']);
 
 // echo '<pre>';
 // print_r($data);
 // echo '</pre>';	
 // exit;
 
-// $final_arr['projectId'] = $_REQUEST['projectId'];
-$final_arr['projectName'] = $_REQUEST['projectName'];
-$final_arr['projectType'] = $_REQUEST['projectType'];
-$final_arr['date'] = $_REQUEST['date'];
-$final_arr['projectSegment'] = $_REQUEST['projectSegment'];
+// $final_arr['projectId'] = $_POST['projectId'];
+$final_arr['projectName'] = $_POST['projectName'];
+$final_arr['projectType'] = $_POST['projectType'];
+$final_arr['date'] = $_POST['date'];
+$final_arr['projectSegment'] = $_POST['projectSegment'];
 $final_arr['textLanguage'] = $project_langs;
 
 foreach($project_langs as $lang)
 {
 	$temp_arr = array();
 	
-	foreach($_REQUEST as $key=>$param)
+	foreach($_POST as $key=>$param)
 	{
 		if(strpos($key, '_'.$lang) !== false)
 		{
@@ -77,9 +77,9 @@ foreach($project_langs as $lang)
  //exit;
 
 
-if(!$_REQUEST['id'])
+if(!$_POST['id'])
 {
-	// foreach($_REQUEST as $key=>$val)
+	// foreach($_POST as $key=>$val)
 		// $final_arr[$key] = $val;
 
 	$data[] = $final_arr;
@@ -90,7 +90,7 @@ else
 	{
 		foreach($data as $key=>$arr)
 		{
-			if($arr['id'] == $_REQUEST['id'])
+			if($arr['id'] == $_POST['id'])
 			{
 				$data[$key] = $final_arr;
 				break;
@@ -105,7 +105,7 @@ else
 $json = json_encode($data);
 
 if(file_put_contents($dir_to_save, $json))
-	echo 'Текст сегмента '.$_REQUEST['projectSegment'].' сохранился';
+	echo 'Текст сегмента '.$_POST['projectSegment'].' сохранился';
 else
-	echo 'Ошибка при сохранении текста для сегмента '.$_REQUEST['projectSegment'];
+	echo 'Ошибка при сохранении текста для сегмента '.$_POST['projectSegment'];
 ?>
