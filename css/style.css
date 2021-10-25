@@ -595,12 +595,7 @@ ul.index_teplates li label .t_id {
 .container-for-text{
     padding: 30px 110px 30px 60px;
 }
-.text-container{
-    border-left: 1px solid #26a3cc;
-    border-right: 1px solid #26a3cc;
-    padding: 20px  30px;
-    background-color: #f2f2f2;
-}
+
 .text-container2{
     padding: 10px  30px;
     background-color: #edf2ed;

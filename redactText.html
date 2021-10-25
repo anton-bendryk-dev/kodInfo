@@ -3,16 +3,16 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Cache-Control" content="private">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="-1">
     <title>Страница редактирования текстов</title>
     <link rel="stylesheet" href="css/reset.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/redactText.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                         <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
                     </div>
                     <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
-                        
+
                         <a href="#" id="createMailingTextBtn" class="btn gen-templates">Выбрать</a>
                         <a href="#" id="addText" class="btn" style="margin-top:10px;">добавить текст</a>
                     </div>
@@ -45,7 +45,7 @@
             <section>
                 <div class="container-for-text"></div>
                 <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
-                    <a href="/index.html" class="btn gen-templates">На главную </a>
+                    <a href="index.php" class="btn gen-templates">На главную </a>
                 </div>
             </section>
             <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
@@ -56,20 +56,21 @@
     </div>
 
 </body>
-<script type="application/json" src="./javascript/projects.JSON"></script>
+<script type="application/json" src="javascript/projects.JSON"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
     $.ajax({
         cache: false,
     });
+
     function sliderFunction() {
         $('.one-time').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true
-    });
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true
+        });
     }
     let textPrList = document.querySelector("#text_pr_list");
     let mailingType = document.querySelector("#mailing_type");
@@ -80,13 +81,14 @@
         redactBtn.style.bottom = "20px";
         redactBtn.style.left = "80%";
     }
-    var way = "./texts/";
+    var way = "texts/";
+
     const sendTextIdtArr = [];
 
     function readTextFile(file, callback) {
 
         var rawFile = new XMLHttpRequest();
-        rawFile.overrideMimeType("./javascript/projects.json");
+        rawFile.overrideMimeType("javascript/projects.json");
         rawFile.open("GET", file, true);
         rawFile.onreadystatechange = function () {
             if (rawFile.readyState === 4 && rawFile.status == "200") {
@@ -96,7 +98,7 @@
         rawFile.setRequestHeader("Cache-Control", "no-cache");
         rawFile.send(null);
     }
-    readTextFile("./javascript/projects.json", function (text) {
+    readTextFile("javascript/projects.json", function (text) {
         var data = JSON.parse(text);
         // достаём названия проектов
         for (let i = 0; i < data.length; i++) {
@@ -128,14 +130,15 @@
                     }
                 }
             }
-            way = "./texts/" + textPrList.value.replace(/\s+/g, '') + "/" + mailingType.value.replace(/\s+/g,
+            way = "texts/" + textPrList.value.replace(/\s+/g, '') + "/" + mailingType.value.replace(/\s+/g,
                 '') + "/textsData.json";
             textPrList.addEventListener("click", deleteOption);
+
             function updateMarkup() {
-            
-            while (containerForText.firstChild) {
-                containerForText.removeChild(containerForText.firstChild);
-            }
+
+                while (containerForText.firstChild) {
+                    containerForText.removeChild(containerForText.firstChild);
+                }
             };
             updateMarkup();
             return way;
@@ -143,22 +146,30 @@
         mailingType.addEventListener("click", mailingTypeBtn);
 
     });
+
     function addText() {
         let subject = document.querySelectorAll(".subject");
         let text = document.getElementsByName("text");
         let btnInput = document.querySelectorAll(".text-box2 input");
         for (let i = 0; i < subject.length; i++) {
-            subject[i].value = "Приятного уикенда и самых позитивных эмоций!"  
+            subject[i].value = "Приятного уикенда и самых позитивных эмоций!"
         }
         for (let i = 0; i < text.length; i++) {
-            text[i].value = "{username}, мы хотим, чтобы Вы чаще улыбались. Поэтому приготовили для Вас приятный презент — пакет индивидуальных бонусов."  
+            text[i].value =
+                "{username}, мы хотим, чтобы Вы чаще улыбались. Поэтому приготовили для Вас приятный презент — пакет индивидуальных бонусов."
         }
         for (let i = 0; i < btnInput.length; i++) {
-            btnInput[i].value = "Play"  
+            btnInput[i].value = "Play"
         }
     }
     document.querySelector("#addText").addEventListener("click", addText);
 </script>
 <script type="application/json" src=`${way}`></script>
-<script type="text/javascript" src="./javascript/redactText.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getScript("javascript/redactText.js", function (data, textStatus, jqxhr) {
+            console.log("done")
+        });
+    });
+</script>
 </html>

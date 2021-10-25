@@ -57,7 +57,7 @@
                             id='templates_versions'></div>
                         <div class="download-form">
                             <div class="label-container"> 
-                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" value="download_text" checked/>
+                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" checked >
                                 <span></span>
                                 <label for="download_text">Загрузить текст</label>
                             </div>
@@ -66,20 +66,20 @@
                         </div>
                         <div class="download-form">
                             <div class="label-container">
-                                <input type="checkbox" class="checkbox" id="find_text" name="find_text" value="find_text">
+                                <input type="checkbox" class="checkbox" id="find_text" name="find_text">
                                 <span></span>
                                 <label for="find_text">Искать текст</label>
                             </div>
-                            <input class="calendar form-control" type="date" name="calendar"/>
+                            <input class="calendar form-control" type="date" name="calendar">
                         </div>
                         <div>
-                            <input type='submit' name='submit' style="display:none;" />
-                            <a href="#" class="btn gen-templates" onclick='sub();'>Дальше</a>
+                            <input type='submit' name='submit' value = "Дальше" class="btn gen-templates" />
+                            <!--<a href="#" class="btn gen-templates" onclick='sub();'>Дальше</a>-->
                         </div>
                         <div class="mt-3 navigation">
                             <a href="templates_list.php" class="btn btn-primary">Список шаблонов</a>
                         </div>
-
+			
                     </form>
                 </div>
                 <!-- НОВОСТИ -->
@@ -109,7 +109,7 @@
                     <section>
                         <div class="container-for-text"></div>
                         <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
-                            <a href="/redactText.html" class="btn gen-templates">Перейти к редакции</a>
+                            <a href="redactText.html" class="btn gen-templates">Перейти к редакции</a>
                         </div>
                     </section>
                     <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
@@ -301,10 +301,44 @@
             alert('Выберите вариант верстки!');
         } else {
             //alert('Дальше');
-            $('form[name=temp_params] input[name=submit]').click();
+			
+			// console.log($('input[name=submit1]').val());
+            // $('form[name=temp_params] input[name=submit]').click();
+            document.forms["temp_params"].submit();
         }
     }
 
+	$('form[name=temp_params]').submit(function(event) {
+		// console.log();
+		// console.log('1212');
+		// alert('123123!');
+		// event.preventDefault();
+		
+		
+		if ($('#pr_list option:selected').val() == '0')
+		{
+            console.log('Проект не выбран!');
+            alert('Проект не выбран!');
+			event.preventDefault();
+		}
+        else if ($('input[name=templates_version]:checked').length == 0) 
+		{
+            console.log('Выберите вариант верстки!');
+            alert('Выберите вариант верстки!');
+			event.preventDefault();
+		}
+        else if ($("#find_text").prop('checked') === true && $("input[name=calendar]").val() === '') 
+		{
+            console.log('Выберите дату создания текста!');
+            alert('Выберите дату создания текста!');
+			event.preventDefault();
+		}
+        // else
+            // console.log($("input['calendar']").val());
+       	
+		
+	});
+	
 
     // function news_sub() {
     //     if ($('#news_pr_list option:selected').val() == '0')
@@ -325,8 +359,15 @@
         }
     }
 </script>
-<script type="application/json" src="./javascript/projects.json"></script>
-<script type="text/javascript" src="./javascript/index.js"></script>
+<script type="application/json" src="javascript/projects.json"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getScript("javascript/index.js", function (data, textStatus, jqxhr) {
+            startProgram();
+        });
+    });
+</script>
+</script>
 
 </html>
 

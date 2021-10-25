@@ -13,9 +13,10 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid #26a3cc;
-
 }
-
+li::marker {
+    display: none;
+}
 .slick-slider ul {
     display: flex;
     justify-content: center;
@@ -30,7 +31,16 @@
     grid-template-columns: 50% 50%;
     padding: 10px;
 }
-
+.container-text-box{
+    border-left: 1px solid #26a3cc;
+    border-right: 1px solid #26a3cc;
+    border-bottom: 1px solid #26a3cc;
+    padding: 20px  30px;
+    background-color: #f2f2f2;
+}
+.slider-text-box{
+    background-color: #f2f2f2;
+}
 .slick-list {
     order: 1;
 }

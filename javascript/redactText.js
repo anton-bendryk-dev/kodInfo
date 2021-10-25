@@ -5,10 +5,10 @@ function getText() {
     // ================================================
     // формируем путь к JSON
     // ================================================
-    let way = "./texts/" + textPrList.value.replace(/\s+/g, "") + "/" + mailingType.value.replace(/\s+/g, "") + "/textsData.json";
+    let way = "texts/" + textPrList.value.replace(/\s+/g, "") + "/" + mailingType.value.replace(/\s+/g, "") + "/textsData.json";
 
     function readTextFile(file, callback) {
-        var rawFile = new XMLHttpRequest();
+        let rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType(`${way}`);
         rawFile.open("GET", file, true);
         rawFile.onreadystatechange = function () {
@@ -20,7 +20,7 @@ function getText() {
         rawFile.send(null);
     }
     readTextFile(`${way}`, function (text) {
-        var dataText = JSON.parse(text);
+        let dataText = JSON.parse(text);
 
         let idArr = [];
         let languageArr = [];
@@ -30,7 +30,7 @@ function getText() {
         // ================================================
         for (let i = 0; i < dataText.length; i++) {
             calendar = document.querySelector(".calendar");
-            if (mailingType.value.replace(/\s+/g, "") !== "Regular") {
+            if (mailingType.value.replace(/\s+/g, "") !== "regular") {
                 calendar.value = dataText[i].date;
             }
             if (dataText[i].projectName === textPrList.value.replace(/\s+/g, "") && dataText[i].projectType === mailingType.value.replace(/\s+/g, "") && dataText[i].date === calendar.value) {
@@ -38,7 +38,8 @@ function getText() {
                 let idProject = dataText[i].id;
                 let div = document.createElement("div");
                 let slider = document.createElement("div");
-                slider.className = "one-time";
+                slider.className = "one-time container-text-box";
+                div.className = "container-text-box";
                 slider.id = `${dataText[i].textLanguage}`;
                 containerForText.appendChild(div);
                 containerForText.appendChild(slider);
@@ -76,6 +77,7 @@ function getText() {
                                 slider.appendChild(div2);
                                 languageArr.push(dataText[i].textLanguage[j]);
                             };
+
                             let segment = document.querySelector(`.text-container${idProject + dataText[i].textLanguage[j]} .segment`);
                             let subject = document.querySelector(`.text-container${idProject + dataText[i].textLanguage[j]} .subject${num} #subject${dataText[i].textLanguage[j]}`);
                             segment.value = dataText[i].projectSegment;
@@ -86,11 +88,11 @@ function getText() {
                                     let div = document.createElement("div");
                                     div.className = "text-box";
                                     let textClass = dataText[i][`${prop}`][k][0];
-                                    let text = dataText[i][`${prop}`][k][1].replace("<br/> ", "\n\n");
+                                    let text = dataText[i][`${prop}`][k][1].replace(/<br ?\/?>/ig, "\n\n");
                                     div.innerHTML = `<span class="text-title">${textClass}</span>
-                                                            <div class="textarea  textarea${num}">
-                                                                <textarea name="text" class="projectText"
-                                                                    placeholder="Введите текст письма" id=${textClass} rows="4">${text}</textarea>
+                                                            <div class="textarea  textarea${num} textmain">
+                                                                <textarea name="text" class="projectText" id="${dataText[i][`${prop}`][k][0]}"
+                                                                    placeholder="Введите текст письма" style="height:50px;">${text}</textarea>
                                                             </div>`;
                                     textBox2.appendChild(div);
                                 } else if (dataText[i][`${prop}`][k][0] === "button_name" || dataText[i][`${prop}`][k][0] === "button_name1" || dataText[i][`${prop}`][k][0] === "button_name2" || dataText[i][`${prop}`][k][0] === "button_name3") {
@@ -131,7 +133,10 @@ function getText() {
         for (let c = 0; c < languageArr.length; c++) {
             lannguageBtns[c].innerHTML = languageArr[c];
         }
-
+        let ta = document.querySelectorAll('.textmain textarea');
+                    for (let t = 0; t < ta.length; t++) {
+                        ta[t].style.height = ta[t].scrollHeight + 10 + "px";
+                    }
         // ================================================
         // сохраняем текст
         // ================================================
@@ -160,7 +165,7 @@ function getText() {
                         sendTextArr.push(projectSegment);
                         for (let j = 0; j < dataText[i].textLanguage.length; j++) {
                             let subject1 = document.querySelector(`.text-container${idArr[a] + dataText[i].textLanguage[j]} .subject${num} #subject${dataText[i].textLanguage[j]}`);
-                            let projectSubject = "subject_" + dataText[i].textLanguage[j] + "=" + subject1.value.replace(/\s+/g, "+");
+                            let projectSubject = "Subject_" + dataText[i].textLanguage[j] + "=" + subject1.value.replace(/\s+/g, "+");
                             sendTextArr.push(projectSubject);
                             let text = [];
                             for (let m = 0; m < textTitleArr.length; m++) {
@@ -171,37 +176,38 @@ function getText() {
                             for (let t = 0; t < text.length; t++) {
                                 let p = document.createElement("p");
                                 p.innerHTML = text[t].value;
-                                let text2 = p.innerHTML.replace("\n", "<br/>");
+                                let text2 = p.innerHTML.replace(/\s\s+/g, "<br/>");
                                 let projectText = `${text[t].id}` + "_" + dataText[i].textLanguage[j] + "=" + text2.replace(/\s+/g, "+");
                                 sendTextArr.push(projectText);
                             };
-                            
                         }
 
                         // объект для отправки
                         let id = "id=" + idArr[a];
                         let sendText = id;
                         for (let t = 0; t < sendTextIdtArr.length; t++) {
-                            sendText += "&"+ sendTextIdtArr[t];
+                            sendText += "&" + sendTextIdtArr[t];
                         }
                         for (let t = 0; t < sendTextArr.length; t++) {
                             sendText += "&" + sendTextArr[t];
                         }
-                        
+
                         sendTextData.push(sendText)
                     }
                 }
             }
-            
+
             num = 0;
+            
         }
 
         function sendTextFunction() {
             CreateText();
-            document.querySelector(".save-text-container").style.display = 'flex';
+            // document.querySelector(".save-text-container").style.display = 'flex';
             for (let text of sendTextData) {
                 function sendText() {
                     let request = new XMLHttpRequest();
+
                     function reqReadyStateChange() {
                         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
                             console.log(request.responseText);
@@ -210,7 +216,7 @@ function getText() {
                         };
                     }
                     // строка с параметрами для отправки
-                    request.open("POST", "../save_text.php?", false);
+                    request.open("POST", "save_text.php?", false);
                     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     request.setRequestHeader('Content-Length', `${text.length}`);
                     request.send(text);
@@ -219,7 +225,7 @@ function getText() {
                 }
                 sendText();
             }
-            
+
             window.setTimeout(function () {
                 localStorage.clear();
                 location.reload();

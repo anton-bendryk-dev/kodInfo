@@ -6,7 +6,7 @@ let numberOfSegments = document.querySelector("#numberOfSegments");
 let containerForText = document.querySelector(".container-for-text");
 // считываем файл json
 function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
+    let rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("./javascript/projects.json");
     rawFile.open("GET", file, true);
     rawFile.onreadystatechange = function () {
@@ -19,7 +19,7 @@ function readTextFile(file, callback) {
 }
 
 readTextFile("./javascript/projects.json", function (text) {
-    var data = JSON.parse(text);
+    let data = JSON.parse(text);
     // достаём названия проектов
     for (let i = 0; i < data.length; i++) {
         const option = document.createElement('option');
@@ -201,7 +201,7 @@ readTextFile("./javascript/projects.json", function (text) {
                 date = "date=" + year + "-" + day + "-" + month;
             }
             let projectSegment = "projectSegment=" + segment[a].value.replace(/\s+/g, '+');
-            let projectSubject = "subject_ru=" + subject[a].value.replace(/\s+/g, '+');
+            let projectSubject = "Subject_ru=" + subject[a].value.replace(/\s+/g, '+');
             projectName = "projectName=" + textPrList.value;
             projectName = projectName.replace(/\s+/g, '');
             sendTextArr.push(projectName);
@@ -215,7 +215,7 @@ readTextFile("./javascript/projects.json", function (text) {
                     let textLanguage = "textLanguage=" + data[i].language[0];
                     for (let l = 0; l < data[i].language.length; l++) {
                         if (data[i].language[l] !== "ru") {
-                            projectSubject = "subject_" + data[i].language[l] + "=";
+                            projectSubject = "Subject_" + data[i].language[l] + "=";
                             sendTextArr.push(projectSubject);
                         }
                     }
@@ -250,14 +250,14 @@ readTextFile("./javascript/projects.json", function (text) {
                     sendText += "&" + sendTextArr[t];
                 }
                 document.querySelector(".save-text-container").style.display = 'flex';
-                var request = new XMLHttpRequest();
+                let request = new XMLHttpRequest();
 
                 function reqReadyStateChange() {
                     if (request.readyState == 4 && request.status == 200)
                         document.getElementById("output").innerHTML = request.responseText;
                 }
                 // строка с параметрами для отправки
-                request.open("POST", "../save_text.php?", false);
+                request.open("POST", "save_text.php?", false);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 request.setRequestHeader('Content-Length', `${sendText.length}`);
                 request.send(sendText);

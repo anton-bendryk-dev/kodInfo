@@ -1,16 +1,16 @@
 [
     {
         "id": 1,
-        "name": "Admiral Shark",
+        "name": "Admiral Sharks",
         "language": ["ru","en"],
         "type": [
-            ["Regular", ["text"]],
+            ["regular", ["text"]],
             ["RWP", ["text"]],
             ["FTD", ["text"]],
             ["Birthday", ["header1", "header2", "text1"]]
         ],
         "segments": [
-            ["Regular", ["dep", "nodep"]],
+            ["regular", ["all"]],
             ["RWP", ["1day", "3day", "5day", "7day", "9day", "12day", "15day"]],
             ["FTD", ["1day >50 usd", "1day <50 usd", "3day", "5day", "6day done", "6day not done", "9day", "13day"]],
             ["Birthday", ["never dep", "netdep <365", "netdep 365|720"]]
@@ -62,7 +62,7 @@
         "name": "Fortune Clock",
         "language": ["ru","en", "de", "pl", "tr", "es", "pt", "fi", "no", "cs", "sv", "fr"],
         "type": [
-            ["Regular", ["header1", "text1", "button_name1","header2", "text2", "button_name2","header3", "text3", "button_name3"]],
+            ["regular", ["header1", "text1", "button_name1","header2", "text2", "button_name2","header3", "text3", "button_name3"]],
             ["RWP", ["text"]],
             ["FTD", ["text"]],
             ["Sport", ["text"]],
@@ -70,7 +70,7 @@
             ["Winners ", ["header0", "header1", "text"]]
         ],
         "segments": [
-            ["Regular", ["all"]],
+            ["regular", ["all"]],
             ["RWP", ["1 day", "3 day", "5 day", "7 day", "9 day", "11 day", "12 day", "13 day", "14 day"]],
             ["FTD", ["1 day", "3 day", "5 day", "6 day bonus", "6 day no bonus", "9 day", "12 day"]],
             ["Sport", ["all"]],

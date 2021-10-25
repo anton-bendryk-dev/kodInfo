@@ -1,6 +1,6 @@
 <?php
-print_r($_POST);
-$config = file_get_contents('./javascript/projects.json');
+// print_r($_POST);
+$config = file_get_contents('javascript/projects.json');
 $config = json_decode($config, true);
 $project_langs = array();
 
