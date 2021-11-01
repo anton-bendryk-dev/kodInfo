@@ -8,9 +8,9 @@
     <meta http-equiv="Expires" content="-1">
     <title>Страница редактирования текстов</title>
     <link rel="stylesheet" href="css/reset.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="css/redactText.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="css/text.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
@@ -33,8 +33,7 @@
                     <div class="ftf-box">
                         <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
                     </div>
-                    <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
-
+                    <div class="ftf-box" style="flex-direction: column;padding-top: 10px;">
                         <a href="#" id="createMailingTextBtn" class="btn gen-templates">Выбрать</a>
                         <a href="#" id="addText" class="btn" style="margin-top:10px;">добавить текст</a>
                     </div>
@@ -45,7 +44,7 @@
             <section>
                 <div class="container-for-text"></div>
                 <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
-                    <a href="index.php" class="btn gen-templates">На главную </a>
+                    <a href="text.html" class="btn gen-templates">На главную </a>
                 </div>
             </section>
             <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
@@ -67,6 +66,7 @@
         $('.one-time').slick({
             dots: true,
             infinite: true,
+            draggable: false,
             speed: 300,
             slidesToShow: 1,
             adaptiveHeight: true
@@ -79,15 +79,15 @@
     window.onscroll = function (e) {
         redactBtn.style.position = "sticky";
         redactBtn.style.bottom = "20px";
-        redactBtn.style.left = "80%";
+        redactBtn.style.left = "83%";
     }
-    var way = "texts/";
+    let way = "texts/";
 
     const sendTextIdtArr = [];
 
     function readTextFile(file, callback) {
 
-        var rawFile = new XMLHttpRequest();
+        let rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType("javascript/projects.json");
         rawFile.open("GET", file, true);
         rawFile.onreadystatechange = function () {
@@ -99,7 +99,7 @@
         rawFile.send(null);
     }
     readTextFile("javascript/projects.json", function (text) {
-        var data = JSON.parse(text);
+        let data = JSON.parse(text);
         // достаём названия проектов
         for (let i = 0; i < data.length; i++) {
             const option = document.createElement('option');
@@ -168,7 +168,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $.getScript("javascript/redactText.js", function (data, textStatus, jqxhr) {
-            console.log("done")
+            console.log(textStatus)
         });
     });
 </script>

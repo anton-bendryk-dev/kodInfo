@@ -30,7 +30,7 @@
                     aria-selected="false">Картинки</a>
             </div>
             <div class="navigation">
-                <a id="text-tab" data-toggle="tab" href="#text" role="tab" aria-controls="text"
+                <a id="text-tab" data-toggle="tab" href="text.html" role="tab" aria-controls="text"
                     aria-selected="false">Текста</a>
             </div>
             <div class="navigation">
@@ -56,8 +56,8 @@
                         <div class="form-group col-md-6" style="display: none; background-color: #eeeeee;"
                             id='templates_versions'></div>
                         <div class="download-form">
-                            <div class="label-container"> 
-                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" checked >
+                            <div class="label-container">
+                                <input type="checkbox" class="checkbox" id="download_text" name="download_text" checked>
                                 <span></span>
                                 <label for="download_text">Загрузить текст</label>
                             </div>
@@ -73,47 +73,16 @@
                             <input class="calendar form-control" type="date" name="calendar">
                         </div>
                         <div>
-                            <input type='submit' name='submit' value = "Дальше" class="btn gen-templates" />
+                            <input type='submit' name='submit' value="Дальше" class="btn gen-templates" />
                             <!--<a href="#" class="btn gen-templates" onclick='sub();'>Дальше</a>-->
                         </div>
                         <div class="mt-3 navigation">
                             <a href="templates_list.php" class="btn btn-primary">Список шаблонов</a>
                         </div>
-			
+
                     </form>
                 </div>
                 <!-- НОВОСТИ -->
-                <div class="tab-pane text" id="text" role="tabpanel" aria-labelledby="text-tab">
-                    <div class="form-text-filter">
-                        <div class="ftf-box">
-                            <select name="text_project" id="text_pr_list" class="form-control">
-                                <option value='0' checked="checked">Выберите проект</option>
-
-                            </select>
-                        </div>
-                        <div class="ftf-box">
-                            <select name="text_project" id="mailing_type" class="form-control">
-                                <option value='0' checked="checked">Выберите тип рассылки</option>
-                            </select>
-                        </div>
-                        <div class="ftf-box">
-                            <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
-                        </div>
-                        <div class="ftf-box" style="justify-content: start !important;flex-direction: column;">
-                            <div style="text-align: center;">
-                                <input id="numberOfSegments" type="text" placeholder="количество разметок" />
-                            </div>
-                            <a href="#" id="createMailingTextBtn" class="btn gen-templates">Выбрать</a>
-                        </div>
-                    </div>
-                    <section>
-                        <div class="container-for-text"></div>
-                        <div class="ftf-box" style="justify-content:start !important;margin:20px 60px;">
-                            <a href="redactText.html" class="btn gen-templates">Перейти к редакции</a>
-                        </div>
-                    </section>
-                    <a href="#" class="btn gen-templates redact-btn" id="saveTextBtn">Сохранить</a>
-                </div>
                 <div class="tab-pane profile" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="block">
 
@@ -176,15 +145,14 @@
             <p>Текст сохраняется 👍</p>
         </div>
     </div>
-    
+
 </body>
 <script text="text/javascript">
     $.ajax({
-            cache: false,
-            });
+        cache: false,
+    });
     const home = document.querySelector(".home");
     const profile = document.querySelector(".profile");
-    const text = document.querySelector(".text");
     const others = document.querySelector(".others");
     let redactBtn = document.querySelector(".redact-btn");
 
@@ -195,40 +163,28 @@
     }
     home.style.display = "block";
     profile.style.display = "none";
-    text.style.display = "none";
     others.style.display = "none";
 
     function tabHome() {
         home.style.display = "block";
         profile.style.display = "none";
-        text.style.display = "none";
         others.style.display = "none";
     }
 
     function tabProfile() {
         home.style.display = "none";
         profile.style.display = "block";
-        text.style.display = "none";
-        others.style.display = "none";
-    }
-
-    function tabText() {
-        home.style.display = "none";
-        profile.style.display = "none";
-        text.style.display = "block";
         others.style.display = "none";
     }
 
     function tabOthers() {
         home.style.display = "none";
         profile.style.display = "none";
-        text.style.display = "none";
         others.style.display = "block";
     };
 
     document.querySelector("#home-tab").addEventListener("click", tabHome);
     document.querySelector("#profile-tab").addEventListener("click", tabProfile);
-    document.querySelector("#text-tab").addEventListener("click", tabText);
     document.querySelector("#others-tab").addEventListener("click", tabOthers);
 
     $('#pr_list').change(function () {
@@ -301,44 +257,39 @@
             alert('Выберите вариант верстки!');
         } else {
             //alert('Дальше');
-			
-			// console.log($('input[name=submit1]').val());
+
+            // console.log($('input[name=submit1]').val());
             // $('form[name=temp_params] input[name=submit]').click();
             document.forms["temp_params"].submit();
         }
     }
 
-	$('form[name=temp_params]').submit(function(event) {
-		// console.log();
-		// console.log('1212');
-		// alert('123123!');
-		// event.preventDefault();
-		
-		
-		if ($('#pr_list option:selected').val() == '0')
-		{
+    $('form[name=temp_params]').submit(function (event) {
+        // console.log();
+        // console.log('1212');
+        // alert('123123!');
+        // event.preventDefault();
+
+
+        if ($('#pr_list option:selected').val() == '0') {
             console.log('Проект не выбран!');
             alert('Проект не выбран!');
-			event.preventDefault();
-		}
-        else if ($('input[name=templates_version]:checked').length == 0) 
-		{
+            event.preventDefault();
+        } else if ($('input[name=templates_version]:checked').length == 0) {
             console.log('Выберите вариант верстки!');
             alert('Выберите вариант верстки!');
-			event.preventDefault();
-		}
-        else if ($("#find_text").prop('checked') === true && $("input[name=calendar]").val() === '') 
-		{
+            event.preventDefault();
+        } else if ($("#find_text").prop('checked') === true && $("input[name=calendar]").val() === '') {
             console.log('Выберите дату создания текста!');
             alert('Выберите дату создания текста!');
-			event.preventDefault();
-		}
+            event.preventDefault();
+        }
         // else
-            // console.log($("input['calendar']").val());
-       	
-		
-	});
-	
+        // console.log($("input['calendar']").val());
+
+
+    });
+
 
     // function news_sub() {
     //     if ($('#news_pr_list option:selected').val() == '0')
@@ -359,17 +310,7 @@
         }
     }
 </script>
-<script type="application/json" src="javascript/projects.json"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.getScript("javascript/index.js", function (data, textStatus, jqxhr) {
-            startProgram();
-        });
-    });
-</script>
-</script>
 
 </html>
-
 
 

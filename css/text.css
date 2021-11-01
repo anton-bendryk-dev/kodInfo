@@ -1,0 +1,245 @@
+header {
+    display: flex;
+    min-height: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: #34b1da;
+}
+.header {
+    background-color: #fff;
+    padding-top: 10px;
+}
+.form-text-filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.ftf-box{
+    width: 25%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-control{
+    color: #34b1da;
+    padding: 10px;
+    width: 65%;
+    border: 2px solid #26a3cc !important;
+}
+.calendar-box{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #26a3cc;
+    height: 50px;
+}
+.calendar{
+    border: none;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+.container-for-text{
+    padding: 30px 110px 30px 60px;
+}
+
+.text-container2{
+    padding: 10px  30px;
+    background-color: #edf2ed;
+    width: 80%;
+    min-height: 200px;
+    -webkit-box-shadow: 0px 3px 15px 5px #000000; 
+    box-shadow: 0px 3px 15px 5px #000000;
+}
+.text-box{
+    display: flex;
+}
+.text-box span{
+    display: flex;
+    min-width: 150px;
+    min-height: 85px;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://thiscrm.co/upload/images/maximum/%E2%80%94Pngtree%E2%80%94tape%20blank%20paper%20stationery%20sticker_5809925.png);
+    background-repeat: no-repeat;
+    background-size: 145px;
+    background-position: center;
+}
+.textarea{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+}
+#numberOfSegments {
+    width: 200px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #26a3cc;
+}
+.textarea textarea{
+    width: 100%;
+    font-size: 18px;
+}
+header h1 {
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+}
+.text2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+input[type="text"] {
+    padding: 5px;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    text-decoration: none;
+    background-color: #34b1da;
+    width: 260px;
+    height: 50px;
+    border-radius: 5px;
+}
+.save-text-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 125, 215, 0.28);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.registration-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 125, 215, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.registration-container form{
+    min-width: 300px;
+    min-height: 200px;
+    background-color: #edf2ed;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 15px;
+}
+.registration-container input[type="text"] {
+    width: 100%;
+    border: 1px solid #26a3cc;
+    padding: 10px;
+}
+.save-text-container p{
+    font-size: 50px;
+}
+.redact-btn{
+    position: absolute;
+    bottom: 20px;
+    right: 107px;
+}
+.to-redact{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    min-width: 200px;
+    min-height: 60px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #26a3cc;
+    text-decoration: none;
+}
+.to-redact:hover {
+    background-color: #0096c8;
+    box-shadow: 0 0 4px 2px #0000009e;
+    min-height: 54px;
+    color: white;
+    border: 3px solid #fff;
+    transition-duration: 200ms;
+}
+.btn:hover {
+    background-color: #26a3cc;
+    box-shadow: 0 0 4px 2px #0000009e;
+}
+#container-for-text {
+    padding: 30px;
+}
+.btn:active {
+    background-color: #26a3cc;
+    box-shadow: 0 0 1px 1px #1f3f4a;
+}
+.slick-slider {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #26a3cc;
+}
+li::marker {
+    display: none;
+}
+.slick-slider ul {
+    display: flex;
+    justify-content: center;
+}
+
+.slick-dots button {
+    width: 50px;
+}
+.textarea {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+}
+.container-for-text {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+}
+.container-text-box{
+    border-left: 1px solid #26a3cc;
+    border-right: 1px solid #26a3cc;
+    border-bottom: 1px solid #26a3cc;
+    padding: 20px  30px;
+    background-color: #f2f2f2;
+}
+.slider-text-box{
+    background-color: #f2f2f2;
+}
+.slick-list {
+    order: 1;
+}
+
+.slick-prev {
+    display: none !important;
+}
+
+.slick-next {
+    display: none !important;
+}
+
+.slick-dots {
+    order: 4;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="private">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <title>Создать текст</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+    <link rel="stylesheet" href="css/text.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Создание текста</h1>
+        </header>
+        <main>
+            <div class="form-text-filter">
+                <div class="ftf-box">
+                    <select name="text_project" id="text_pr_list" class="form-control">
+                        <option value='0' checked="checked">Выберите проект</option>
+                    </select>
+                </div>
+                <div class="ftf-box">
+                    <select name="text_project" id="mailing_type" class="form-control">
+                        <option value='0' checked="checked">Выберите тип рассылки</option>
+                    </select>
+                </div>
+                <div class="ftf-box">
+                    <div class="calendar-box"><input class="calendar" type="date" name="calendar"></div>
+                </div>
+                <div class="ftf-box" style="flex-direction: column;">
+                    <div style="text-align: center;padding-top: 10px;">
+                        <input id="numberOfSegments" type="text" placeholder="количество разметок" />
+                    </div>
+                    <a href="#" id="createMailingTextBtn" class="btn">Выбрать</a>
+                </div>
+            </div>
+            <section>
+                <div id="container-for-text"></div>
+            </section>
+            <a href="#" class="btn redact-btn" id="saveTextBtn">Сохранить</a>
+        </main>
+        <div class="save-text-container">
+            <p>Текст сохраняется 👍</p>
+        </div>
+        <a href="/redactText.html" class="to-redact">Перейти к редакции</a>
+    </div>
+    
+</body>
+<script text="text/javascript">
+    $.ajax({
+            cache: false,
+            });
+    let redactBtn = document.querySelector(".redact-btn");
+    window.onscroll = function (e) {
+        redactBtn.style.position = "sticky";
+        redactBtn.style.bottom = "20px";
+        redactBtn.style.left = "83%";
+    }
+</script>
+<script type="application/json" src="./javascript/projects.json"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getScript("/javascript/index.js", function (data, textStatus, jqxhr) {
+            console.log("done")
+        });
+    });
+</script>
+
+</html>
+
+
+

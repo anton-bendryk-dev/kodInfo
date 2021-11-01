@@ -22,7 +22,7 @@
         "name": "Mister X",
         "language": ["ru","en"],
         "type": [
-            ["Regular", ["text"]],
+            ["regular", ["text"]],
             ["RWP", ["text"]],
             ["FTD", ["text"]],
             ["reg", ["text", "button_name"]],
@@ -30,7 +30,7 @@
             ["CTA", ["text", "button_name"]]
         ],
         "segments": [
-            ["Regular", ["dep", "nodep"]],
+            ["regular", ["dep", "nodep"]],
             ["RWP", ["dep", "nodep"]],
             ["FTD", ["dep", "nodep"]],
             ["CTA", ["dep", "nodep"]]
@@ -42,14 +42,14 @@
         "name": "Slottica",
         "language": ["ru","en", "de", "pl", "tr", "uk", "es", "pt", "fi", "no", "cs", "sv", "ja"],
         "type": [
-            ["Regular", ["header1", "text1", "button_name1","header2", "text2", "button_name2","header3", "text3", "button_name3"]],
+            ["regular", ["header1", "text1", "button_name1","header2", "text2", "button_name2","header3", "text3", "button_name3"]],
             ["RWP", ["header1", "text1", "button_name1","header2", "text2", "button_name2"]],
             ["FTD", ["text", "button_name"]],
             ["Birthday", ["header1", "header2", "text1"]],
             ["CTA", ["text", "button_name"]]
         ],
         "segments": [
-            ["Regular", ["dep", "nodep"]],
+            ["regular", ["dep", "nodep"]],
             ["RWP", ["dep", "nodep"]],
             ["FTD", ["dep", "nodep"]],
             ["Birthday", ["never dep", "netdep <365", "netdep <365|720"]],

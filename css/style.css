@@ -473,6 +473,7 @@ ul.index_teplates li label .t_id {
     margin: 0px 10px 0px 10px;
     font-size: 16px;
 }
+
 .navigation{
     width: 25%;
     display: flex;
@@ -578,56 +579,7 @@ ul.index_teplates li label .t_id {
     padding: 15px;
     position: relative;
 }
-.calendar-box{
-    width: 75%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #26a3cc;
-    height: 50px;
-}
-.calendar{
-    border: none;
-    font-size: 16px;
-    color: black;
-    font-weight: bold;
-}
-.container-for-text{
-    padding: 30px 110px 30px 60px;
-}
 
-.text-container2{
-    padding: 10px  30px;
-    background-color: #edf2ed;
-    width: 80%;
-    min-height: 200px;
-    -webkit-box-shadow: 0px 3px 15px 5px #000000; 
-    box-shadow: 0px 3px 15px 5px #000000;
-}
-.text-box{
-    display: flex;
-}
-.text-box span{
-    display: flex;
-    min-width: 150px;
-    min-height: 85px;
-    align-items: center;
-    justify-content: center;
-    background-image: url(https://thiscrm.co/upload/images/maximum/%E2%80%94Pngtree%E2%80%94tape%20blank%20paper%20stationery%20sticker_5809925.png);
-    background-repeat: no-repeat;
-    background-size: 145px;
-    background-position: center;
-}
-.textarea{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: start;
-}
-.textarea textarea{
-    width: 100%;
-    font-size: 18px;
-}
 .set_t_ids:active {
     background-color: #26a3cc;
     box-shadow: 0 0 1px 1px #1f3f4a;
@@ -680,12 +632,7 @@ ul.index_teplates li label .t_id {
 .mt-3 a{
     width: 100%;
 }
-.form-control{
-    color: #34b1da;
-    padding: 10px;
-    width: 65%;
-    border: 2px solid #26a3cc !important;
-}
+
 .set_t_ids:hover {
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -1068,31 +1015,9 @@ ul.index_teplates li label .t_id {
     width: 50%;
     margin: 20px;
 }
-#numberOfSegments{
-    width:200px;
-    text-align: center;
-    margin-bottom: 10px;
-    border: 1px solid #26a3cc;
-}
-.redact-btn{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-.save-text-container{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(0, 125, 215, 0.28);
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-.save-text-container p{
-    font-size: 50px;
-}
+
+
+
 @media screen and (max-width: 1399px) {
     .main {
         flex-direction: column;

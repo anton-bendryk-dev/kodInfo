@@ -1,0 +1,44 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Создать текст</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css">
+    <link rel="stylesheet" href="css/text.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="registration-container">
+            <form  name="registration" action="" method="post"> 
+                <p style="font-size:20px;">Ты кто?</p>
+                <input type="text" id="login" name="login" placeholder="Логин" required/>
+                <input type="text" id="password" name="password" placeholder="Пароль" required/>
+                <input type="button" id="registration-btn" class="btn" name="registration" value="GO!"/>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    let inputs = document.querySelectorAll("input[type=text]");
+    let btn = document.querySelector("#registration-btn");
+    console.log(inputs)
+    function check() {
+        for(let i = 0; i < inputs.length; i++) {
+            if(inputs[i].value === "") {
+                inputs[i].style.border = "2px solid #cb2020";
+                inputs[i].placeholder= inputs[i].validationMessage;
+            } else {
+                inputs[i].style.border = "1px solid #26a3cc";
+                inputs[i].placeholder= "";
+            }
+        }
+    }
+    btn.addEventListener("click", check);
+</script>
+</html>
+
+
+

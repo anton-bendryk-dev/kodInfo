@@ -3,7 +3,7 @@ let mailingType = document.querySelector("#mailing_type");
 let createMailingTextBtn = document.querySelector("#createMailingTextBtn");
 let calendar = document.querySelector(".ftf-box .calendar");
 let numberOfSegments = document.querySelector("#numberOfSegments");
-let containerForText = document.querySelector(".container-for-text");
+let containerForText = document.querySelector("#container-for-text");
 // считываем файл json
 function readTextFile(file, callback) {
     let rawFile = new XMLHttpRequest();
@@ -267,6 +267,7 @@ readTextFile("./javascript/projects.json", function (text) {
             s();
         }
         window.setTimeout(function () {
+            calendar.value = 0;
             localStorage.clear();
             location.reload();
         }, 1500);

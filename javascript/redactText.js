@@ -227,6 +227,7 @@ function getText() {
             }
 
             window.setTimeout(function () {
+                calendar.value = 0;
                 localStorage.clear();
                 location.reload();
             }, 1500);
